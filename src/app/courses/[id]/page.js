@@ -5,6 +5,8 @@ import {useRouter,useParams} from "next/navigation"
 import {getUser} from "@/lib/auth"
 import {courses} from "@/data/courses"
 import Loader from "@/components/Loader"
+import {notFound} from "next/navigation"
+
 
 export default function Details(){
 
@@ -27,9 +29,8 @@ setUser(u)
 if(!user)return <Loader/>
 
 const course=courses.find(c=>String(c.id)===String(id))
-
 if(!course){
-return <div className="text-center py-10">Course not found</div>
+notFound()
 }
 
 return(
