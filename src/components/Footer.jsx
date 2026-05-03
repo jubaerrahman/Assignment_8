@@ -1,4 +1,5 @@
 import Link from "next/link"
+import {FaFacebookF,FaInstagram,FaXTwitter} from "react-icons/fa6"
 
 export default function Footer(){
 return(
@@ -34,10 +35,17 @@ return(
 
 <div className="flex gap-4 text-xl">
 
-<a href="https://facebook.com" target="_blank">🔵</a>
-<a href="https://twitter.com" target="_blank">🐦</a>
-<a href="https://linkedin.com" target="_blank">💼</a>
-<a href="https://instagram.com" target="_blank">📸</a>
+<a href="https://facebook.com" target="_blank" className="hover:text-white">
+<FaFacebookF/>
+</a>
+
+<a href="https://instagram.com" target="_blank" className="hover:text-white">
+<FaInstagram/>
+</a>
+
+<a href="https://twitter.com" target="_blank" className="hover:text-white">
+<FaXTwitter/>
+</a>
 
 </div>
 
