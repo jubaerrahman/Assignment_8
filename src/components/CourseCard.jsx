@@ -4,7 +4,7 @@ import Link from "next/link"
 export default function CourseCard({course}){
 
 return(
-<div className="bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-200 overflow-hidden">
+<div className= "card bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-200 overflow-hidden">
 
 <div className="h-40 sm:h-44 w-full overflow-hidden bg-gray-100">
 <img src={course.image} className="w-full h-full object-cover"/>
@@ -22,7 +22,9 @@ return(
 </div>
 
 <Link href={`/courses/${course.id}`}>
-<button className="w-full bg-blue-600 text-white py-2 rounded-md mt-2 text-sm sm:text-base">View Details</button>
+<button className="w-full btn mt-3 text-sm sm:text-base">
+View Details
+</button>
 </Link>
 
 </div>

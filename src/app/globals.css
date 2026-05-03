@@ -3,13 +3,67 @@
 @import "@heroui/styles";
 
 
+
 body {
   font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom, #f9fafb, #eef2ff);
+  color: #111827;
   line-height: 1.6;
-  color: #374151;
 }
+
 
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Poppins', sans-serif;
   letter-spacing: -0.02em;
+}
+
+
+* {
+  transition: all 0.2s ease;
+}
+
+
+.card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+
+.btn {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+
+input {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+}
+
+input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+
+.nav-glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
 }

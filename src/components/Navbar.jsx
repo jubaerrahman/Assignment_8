@@ -13,7 +13,7 @@ setUser(getUser())
 },[])
 
 return(
-<div className="bg-white shadow">
+<div className="nav-glass shadow sticky top-0 z-50 bg-white shadow">
 
 <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
 
