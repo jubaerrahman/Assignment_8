@@ -1,3 +1,4 @@
+import Hero from "@/components/Hero"
 import {courses} from "@/data/courses"
 import CourseCard from "@/components/CourseCard"
 
@@ -9,7 +10,7 @@ const trending=courses.slice(3,6)
 return(
 <div className="space-y-10">
 
-<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Upgrade Your Skills 🚀</h1>
+<Hero/>
 
 <div>
 <h2 className="text-xl sm:text-2xl font-semibold mb-4">Popular Courses</h2>
