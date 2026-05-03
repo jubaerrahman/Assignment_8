@@ -10,7 +10,7 @@ return(
 <div>
 <h1 className="text-white text-xl font-bold mb-2">SkillSphere</h1>
 <p className="text-sm">Learn new skills from industry experts.</p>
-<p className="text-sm mt-2">Contact: skillsphere@gmail.com</p>
+<p className="text-sm mt-2">Contact: {process.env.NEXT_PUBLIC_CONTACT_EMAIL}</p>
 </div>
 
 <div>
