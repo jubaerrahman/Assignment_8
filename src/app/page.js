@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero"
 import {courses} from "@/data/courses"
 import CourseCard from "@/components/CourseCard"
+import LearningTips from "@/components/LearningTips"
+import TopInstructors from "@/components/TopInstructors"
 
 export default function Home(){
 
@@ -27,7 +29,10 @@ return(
 {trending.map(c=><CourseCard key={c.id} course={c}/>)}
 </div>
 </div>
+<LearningTips/>
+<TopInstructors/>
 
 </div>
+
 )
 }

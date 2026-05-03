@@ -1,40 +1,21 @@
-"use client"
-
-import {useEffect,useState} from "react"
-import {useRouter} from "next/navigation"
-import {getUser} from "@/lib/auth"
 import {courses} from "@/data/courses"
-import Loader from "@/components/Loader"
+import CourseCard from "@/components/CourseCard"
 
-export default function Details({params}){
-
-const[user,setUser]=useState(null)
-const router=useRouter()
-
-useEffect(()=>{
-const u=getUser()
-if(!u){
-router.push(`/login?redirect=/courses/${params.id}`)
-}else{
-setUser(u)
-}
-},[])
-
-if(!user)return <Loader/>
-
-const course=courses.find(c=>c.id==params.id)
+export default function Courses(){
 
 return(
-<div className="space-y-4">
-<h1 className="text-2xl font-bold">{course.title}</h1>
-<p>{course.description}</p>
+<div className="max-w-6xl mx-auto px-4 py-10">
 
-<h2 className="text-xl font-semibold">Course Curriculum</h2>
-<ul className="list-disc pl-5">
-<li>Intro</li>
-<li>Core Concepts</li>
-<li>Project</li>
-</ul>
+<h1 className="text-2xl font-bold mb-6">All Courses</h1>
+
+<div className="grid md:grid-cols-3 gap-6">
+{
+courses.map(c=>(
+<CourseCard key={c.id} course={c}/>
+))
+}
+</div>
+
 </div>
 )
 }
