@@ -1,13 +1,28 @@
-export const getUser=()=>{
-if(typeof window==="undefined")return null
-const u=localStorage.getItem("user")
-return u?JSON.parse(u):null
-}
+import { betterAuth } from "better-auth"
+import { MongoClient } from "mongodb"
+import { mongodbAdapter } from "better-auth/adapters/mongodb"
 
-export const loginUser=(data)=>{
-localStorage.setItem("user",JSON.stringify(data))
-}
+const client = new MongoClient(process.env.MONGODB_URI)
 
-export const logoutUser=()=>{
-localStorage.removeItem("user")
-}
+await client.connect()
+
+const db = client.db("skillsphere")
+
+export const auth = betterAuth({
+  database: mongodbAdapter(db, {
+    client
+  }),
+
+  emailAndPassword: {
+    enabled: true
+  },
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }
+  },
+
+  secret: process.env.BETTER_AUTH_SECRET
+})

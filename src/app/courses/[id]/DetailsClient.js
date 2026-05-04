@@ -1,61 +1,66 @@
-"use client"
+"use client";
 
-import {useEffect,useState} from "react"
-import {useRouter} from "next/navigation"
-import {getUser} from "@/lib/auth"
-import Loader from "@/components/Loader"
-import {courses} from "@/data/courses"
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { courses } from "@/data/courses";
 
 export default function DetailsClient({ id }){
 
-const[user,setUser]=useState(null)
-const[loading,setLoading]=useState(true)
+  const session = authClient.useSession();
+  const user = session.data?.user;
 
-const router=useRouter()
+  const router = useRouter();
 
-useEffect(()=>{
-const u=getUser()
+  useEffect(()=>{
+    if(session.isPending) return;
 
-if(!u){
-router.push(`/login?redirect=/courses/${id}`)
-}else{
-setUser(u)
-setLoading(false)
-}
-},[id])
+    if(!user){
+      router.push(`/login?callbackURL=/courses/${id}`);
+    }
+  },[user, session.isPending]);
 
-if(loading) return <Loader/>
+  if(session.isPending){
+    return <div className="text-center py-20">Loading...</div>;
+  }
 
-const course = courses.find(c => String(c.id) === String(id))
-if(!course){
-return <div className="text-center py-20">Course not found</div>
-}
+  const course = courses.find(c => String(c.id) === String(id));
 
-return(
-<div className="max-w-4xl mx-auto px-4 py-10 space-y-4">
+  if(!course){
+    return <div className="text-center py-20">Course not found</div>;
+  }
 
-<img src={course.image} className="w-full h-64 object-cover rounded"/>
+  return(
+  <div className="max-w-4xl mx-auto px-4 py-10 space-y-6">
 
-<h1 className="text-2xl font-bold">{course.title}</h1>
+    <img
+      src={course.image}
+      className="w-full h-72 object-cover rounded-lg"
+    />
 
-<p className="text-gray-600">{course.description}</p>
+    <h1 className="text-3xl font-bold">{course.title}</h1>
 
-<div className="flex gap-4 text-sm text-gray-500">
-<span>Instructor: {course.instructor}</span>
-<span>Duration: {course.duration}</span>
-<span>⭐ {course.rating}</span>
-</div>
+    <p className="text-gray-600">{course.description}</p>
 
-<h2 className="text-xl font-semibold mt-4">Course Curriculum</h2>
+    <div className="flex gap-6 text-sm text-gray-500 border-t pt-4">
 
-<ul className="list-disc pl-5 space-y-1">
-<li>Introduction to the course</li>
-<li>Core concepts explained</li>
-<li>Hands-on project building</li>
-<li>Final review and practice</li>
-</ul>
+      <span>👨‍🏫 {course.instructor || "Unknown Instructor"}</span>
+      <span>⏱ {course.duration || "3h"}</span>
+      <span>⭐ {course.rating || "4.5"}</span>
 
+    </div>
 
-</div>
+    <div>
+      <h2 className="text-xl font-semibold mb-2">Course Curriculum</h2>
+
+      <ul className="list-disc pl-5 space-y-1 text-gray-700">
+        <li>Introduction to the course</li>
+        <li>Core concepts explained</li>
+        <li>Hands-on project building</li>
+        <li>Final review and practice</li>
+      </ul>
+    </div>
+
+  </div>
 )
 }
