@@ -26,7 +26,7 @@ setLoading(false)
 
 if(loading) return <Loader/>
 
-const course = courses.find(c => c.id == id)
+const course = courses.find(c => String(c.id) === String(id))
 if(!course){
 return <div className="text-center py-20">Course not found</div>
 }
