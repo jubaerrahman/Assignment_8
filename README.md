@@ -2,7 +2,7 @@
 
 ## 🌐 Live Site
 
-https://assignment-8-272x-ca5ceaydi-jubaerrahmans-projects.vercel.app/
+https://assignment-8-272x-6omack2ek-jubaerrahmans-projects.vercel.app/
 
 ## 📌 Description
 
