@@ -1,10 +1,11 @@
 "use client"
+export const dynamic = "force-dynamic"
 import {useEffect,useState} from "react"
 import {useRouter,useParams} from "next/navigation"
 import {getUser} from "@/lib/auth"
 import {courses} from "@/data/courses"
 import Loader from "@/components/Loader"
-import {notFound} from "next/navigation"
+
 
 export default function Details(){
 
@@ -14,6 +15,7 @@ const[loading,setLoading]=useState(true)
 const router=useRouter()
 const params=useParams()
 const id=params?.id
+if(!id) return <Loader/>
 
 useEffect(()=>{
 if(!id) return
@@ -33,9 +35,13 @@ if(loading) return <Loader/>
 const course = courses.find(c=>String(c.id)===String(id))
 
 if(!course){
-notFound()
+  return (
+    <div className="text-center py-20">
+      <h1 className="text-3xl font-bold">Course not found</h1>
+      <p className="text-gray-500 mt-2">Invalid course id</p>
+    </div>
+  )
 }
-
 return(
 <div className="max-w-4xl mx-auto px-4 py-10 space-y-4">
 
